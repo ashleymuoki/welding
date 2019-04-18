@@ -1,0 +1,38 @@
+{% extends 'welderapp/base.html' %}
+{% block content %}
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <h3 class="text-center text primary">
+            Designs
+
+        </h3>
+    {% if designs %}
+      {% for design in designs %}
+        <div class="col-sm-3">
+            <div class="thumbnail">
+                <img src="{{ design.picture.url }}" class="img img-thumbnail" style="height:150px; width:150px;">
+                </a>
+            </div>
+                <div class="caption">
+                    <h4>{{ design.design_name }}</h4>
+                    <h5>{{ design.desc }}</h5>
+                    <h5>{{ design.cost}}</h5>
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <input type="hidden" name="order_id" value="{{ order.id }}">
+                    <a href="">
+                    <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                </form>
+                </div>
+        </div>
+
+      {% endfor %}
+    {% endif %}
+</div>
+</div>
+
+{% endblock %}
