@@ -34,8 +34,14 @@
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li>
+                    <a href="{% url 'weldingapp:design' %}">
+                        <span class="glyphicon glyphicon" aria-hidden="true"></span>&nbsp; Add item
+                    </a>
+                </li>
+
+                <li>
                     <a href="{% url 'weldingapp:create_order' %}">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add order
+                        <span class="glyphicon glyphicon" aria-hidden="true"></span>&nbsp; Add order
                     </a>
                 </li>
                 {% if user.is_authenticated %}

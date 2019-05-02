@@ -22,12 +22,9 @@
                     <h5>{{ design.cost}}</h5>
                 <form method="post" action="">
                     {% csrf_token %}
-                    <input type="hidden" name="order_id" value="{{ order.id }}">
-                    <a href="">
-                    <span class="glyphicon glyphicon-trash"></span>
-                    </a>
+
                 </form>
-                    <a href=""><button type="submit" btn btn_success>Update</button>
+                    <a href=""><button type="submit" btn btn_success>Add item</button>
                     </a>
                 </div>
         </div>

@@ -1,6 +1,6 @@
 from django import forms
-from weldingapp . models import Order, Item, User
-from .models import Welder, Design
+from weldingapp . models import Order, Item
+from .models import Design,User
 
 
 class OrderForm(forms.ModelForm):
@@ -29,10 +29,7 @@ class ItemUpdateForm(forms.ModelForm):
         model = Item
         fields = ('item_name', 'length_feet', 'height_feet', 'cost', 'design')
 
-class Welderform(forms.ModelForm):
-    class Meta:
-        model = Welder
-        fields = ('welder_name', 'location', 'cover')
+
 
 class DesignForm(forms.ModelForm):
 

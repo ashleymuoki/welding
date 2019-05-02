@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from . forms import OrderForm, ItemForm, UserForm,Welderform,DesignForm
+from . forms import OrderForm, ItemForm, UserForm,DesignForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from django.views.generic import UpdateView
-from .models import Welder,Design
+from django.views.generic import UpdateView,CreateView
+from .models import Design
 from weldingapp.models import Order,Item
 
 
@@ -112,25 +112,26 @@ class ItemUpdateView(UpdateView):
             return super().form_valid(form)
 
 
-
+@login_required(login_url= 'welderapp:login')
 def create_design(request):
     form = DesignForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         design = form.save(commit=False)
-        design.welder_name = request.user
         design.picture = request.FILES['picture']
+        design.user = request.user
         design.save()
         designs = Design.objects.filter(user=request.user)
         return render(request, 'welderapp/index2.html', {'designs': designs})
-
     form = DesignForm()
     return render(request, 'welderapp/create_design.html', {'form': form})
 
 
+
+
 @login_required(login_url='welderapp:login')
 def design(request):
-    design =Design.objects.filter(user=request.user)
-    return render(request,'welderapp/index2.html', {'design':design})
+    designs =Design.objects.filter(user=request.user)
+    return render(request, 'welderapp/index2.html', {'designs': designs})
 
 
 

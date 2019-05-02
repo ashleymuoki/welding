@@ -5,16 +5,15 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Welder(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    welder_name = models.CharField(max_length=30)
+    welder_name = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
     cover = models.FileField()
-
     def __str__(self):
         return self.welder_name
 
 
 class Design(models.Model):
-    welder_name = models.ForeignKey(Welder, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     design_name = models.CharField(max_length=50)
     desc = models.TextField()
     cost = models.IntegerField()
@@ -22,6 +21,7 @@ class Design(models.Model):
 
     def __str__(self):
         return self.design_name
+
 
 
 

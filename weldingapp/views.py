@@ -1,10 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from . models import Order, Item
-from . forms import OrderForm, ItemForm, UserForm,Welderform, Designform
+from . forms import OrderForm, ItemForm, UserForm, Designform
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.views.generic import UpdateView
-from welderapp.models import Welder,Design
+from welderapp.models import Design
+
+
 
 # Create your views here.
 @login_required(login_url= 'weldingapp:login')
@@ -107,6 +109,15 @@ class ItemUpdateView(UpdateView):
 
         def form_valid(self, form):
             return super().form_valid(form)
+
+
+@login_required(login_url='weldingapp:login')
+def design(request):
+    designs =Design.objects.all()
+    return render(request, 'weldingapp/index2.html', {'designs': designs})
+
+
+
 
 
 
