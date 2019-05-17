@@ -1,4 +1,4 @@
-{% extends 'welderapp/base.html' %}
+{% extends 'weldingapp/base.html' %}
 {% block content %}
 
 
@@ -6,27 +6,27 @@
 <div class="container-fluid">
     <div class="row">
         <h3 class="text-center text primary">
-            Designs
+            Orders
 
         </h3>
-    {% if designs %}
-      {% for design in designs %}
+    {% if orders %}
+      {% for order in orders %}
         <div class="col-sm-3">
-            <div class="thumbnail">
-                <img src="{{ design.picture.url }}" class="img img-thumbnail" style="height:150px; width:150px;">
-                </a>
-            </div>
+        <div class="panel panel-default">
                 <div class="caption">
-                    <h4>{{ design.design_name }}</h4>
-                    <h5>{{ design.desc }}</h5>
-                    <h5>{{ design.cost}}</h5>
+                    <h4> Name : {{ order.user }}</h4>
+                    <h5>date of order : {{ order.date_of_order }}</h5>
                 <form method="post" action="">
                     {% csrf_token %}
+                    <input type="hidden" name="order_id" value="{{ order.id }}">
+                    <a href="{% url 'weldingapp:delete_order' order.id %}">
+                    <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                    <a href="{%  url 'weldingapp:detail' order.id %}" class="btn btn-info btn-sm">Details</a>
 
                 </form>
-                    <a href=""><button type="submit" btn btn_success>Add item</button>
-                    </a>
                 </div>
+        </div>
         </div>
 
       {% endfor %}

@@ -1,5 +1,4 @@
 {% extends 'weldingapp/base.html' %}
-
 {% block content %}
 
 
@@ -8,20 +7,17 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3">
-            <div class="thumbnail">
-                <img src="{{ order.cover.url }}" class="img img-thumbnail img img responsive">
-
+            <div class="panel panel-default">
                 <div class="caption">
-                    <h4>{{ order.client_name }}</h4>
-                    <h5>{{ order.date_of_order }}</h5>
-                    <h5>{{ order.date_of_completion }}</h5>
+                    <h4>Name : {{ order.user }}</h4>
+                    <h5>Date of order : {{ order.date_of_order }}</h5>
                 </div>
             </div>
         </div>
         <div class="col-sm-9">
             <ul class="nav nav-pills">
                 <li role="presentation" class="active"><a href="">Item</a></li>
-                <li role="presentation"><a href="{% url 'weldingapp:create_item' order.id %}">Add item</a></li>
+                <li role="presentation"><a href="{% url 'weldingapp:order' %}">Add item</a></li>
             </ul>
             <div class="panel panel-success">
                 <div class="panel_heading">
@@ -38,18 +34,17 @@
                             <th>Design</th>
                             <th>action</th>
                         </tr></thead>
-                        {% if order.item_set %}
-                            {% for item in order.item_set.all %}
+                        {% if items %}
+                            {% for item in items %}
                                 <tr>
-                                    <td>{{item.item_name}}</td>
-                                    <td>{{item.length_feet}}</td>
-                                    <td>{{item.height_feet}}</td>
-                                    <td>{{item.cost}}</td>
-                                    <td><img src="{{ item.design.url }}" alt="" style="height: 50px; width: 50px"></td>
+                                    <td>{{ item.item }}</td>
+                                    <td>{{ item.length_feet }}</td>
+                                    <td>{{ item.height_feet }}</td>
+                                    <td>{{ item.cost }}</td>
+                                    <td><img src="{{ item.design.url }}" alt="" style="height: 70px; width: 70px"></td>
 
-                                    <td><a href="{% url 'weldingapp:update' item.id %}"class="btn btn_success btn-sm"><span class="glyphicon glyphicon-pencil"></span>Update</a>
-                                     <a href="{% url 'weldingapp:delete_item' order.id item.id %}"
-                                        class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span>Delete</a></td>
+                                    <td><a href="" class="btn btn-danger btn-sm">
+                                        <span class="glyphicon glyphicon-trash"></span>Delete</a></td>
                                 </tr>
                             {% endfor %}
                         {% endif %}

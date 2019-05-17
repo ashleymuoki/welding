@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+
     </head>
 <body>
 <nav class="navbar navbar-inverse">
@@ -17,7 +20,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{% url 'weldingapp:index' %}">Order</a>
+            <a class="navbar-brand" href="">Order</a>
         </div>
 
         <!-- Items -->
@@ -26,21 +29,12 @@
                 <li> <a href="{% url 'weldingapp:index' %}"><span class="glyphicon glyphicon-cd" aria-hidden="true"></span>&nbsp; Home</a></li>
 
             </ul>
-            <form class="navbar-form navbar-left" role="search" method="get" action="">
-                <div class="form-group">
-                    <input type="text" class="form-control" name="q" value="">
-                </div>
-                <button type="submit" class="btn btn-default">Search</button>
-            </form>
+
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="{% url 'weldingapp:design' %}">
-                        <span class="glyphicon glyphicon" aria-hidden="true"></span>&nbsp; Add item
-                    </a>
-                </li>
+
 
                 <li>
-                    <a href="{% url 'weldingapp:create_order' %}">
+                    <a href="{% url 'weldingapp:order' %}">
                         <span class="glyphicon glyphicon" aria-hidden="true"></span>&nbsp; Add order
                     </a>
                 </li>

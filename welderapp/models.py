@@ -1,26 +1,31 @@
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth.models import User
 
 
 # Create your models here.
-class Welder(models.Model):
+class Demand(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    welder_name = models.CharField(max_length=50)
-    location = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
+    date_of_order = models.DateTimeField(default=timezone.now)
     cover = models.FileField()
+
     def __str__(self):
-        return self.welder_name
+        return self.user.username
 
 
 class Design(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    design_name = models.CharField(max_length=50)
-    desc = models.TextField()
+    name = models.ForeignKey(Demand, on_delete=models.CASCADE)
+    item = models.CharField(max_length=40)
+    length_feet = models.IntegerField()
+    height_feet = models.IntegerField()
     cost = models.IntegerField()
-    picture = models.FileField()
+    design = models.FileField()
 
     def __str__(self):
-        return self.design_name
+        return self.item
+
+
 
 
 

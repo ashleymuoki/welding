@@ -6,28 +6,30 @@
 <div class="container-fluid">
     <div class="row">
         <h3 class="text-center text primary">
-            Orders
+            Items
 
         </h3>
-    {% if orders %}
-      {% for order in orders %}
+    {% if items %}
+      {% for item in items %}
         <div class="col-sm-3">
             <div class="thumbnail">
-                <a href="{%  url 'weldingapp:detail' order.id %}">
-                <img src="{{ order.cover.url }}" class="img img-thumbnail" style="height:150px; width:150px;">
+                <a href="">
+                <img src="{{ item.design.url }}" class="img img-thumbnail" style="height:150px; width:150px;">
                 </a>
-            </div>
+
                 <div class="caption">
-                    <h4>{{ order.client_name }}</h4>
-                    <h5>{{ order.date_of_order }}</h5>
-                <form method="post" action="">
-                    {% csrf_token %}
-                    <input type="hidden" name="order_id" value="{{ order.id }}">
-                    <a href="{% url 'weldingapp:delete_order' order.id %}">
-                    <span class="glyphicon glyphicon-trash"></span>
+                    <h4>Item name: {{ item.item }}</h4>
+                    <h5>length(feet): {{ item.length_feet }}</h5>
+                    <h5>height(feet): {{ item.height_feet }}</h5>
+                    <h5>Cost(ksh): {{ item.cost }}</h5>
+
+                    <a href="{% url 'weldingapp:add_item' item.id %}" class="btn btn-info btn-sm">
+                        <i class="fas fa-cart-plus">Add order</i>
                     </a>
-                </form>
+
                 </div>
+            </div>
+
         </div>
 
       {% endfor %}

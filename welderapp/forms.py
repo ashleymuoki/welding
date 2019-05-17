@@ -1,20 +1,25 @@
 from django import forms
-from weldingapp . models import Order, Item
-from .models import Design,User
+from weldingapp. models import Item
+from .models import Design, User , Demand
 
 
 class OrderForm(forms.ModelForm):
 
     class Meta:
-        model = Order
-        fields = ('client_name', 'date_of_order', 'date_of_completion', 'cover')
+        model = Demand
+        fields = ('name', 'date_of_order','cover')
+
+class DesignForm(forms.ModelForm):
+
+    class Meta:
+        model = Design
+        fields = ('item', 'length_feet', 'height_feet', 'cost', 'design')
 
 class ItemForm(forms.ModelForm):
 
     class Meta:
         model = Item
-        fields = ('item_name', 'length_feet', 'height_feet', 'cost', 'design')
-
+        fields = ('item', 'length_feet', 'height_feet', 'cost', 'design')
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
@@ -26,16 +31,10 @@ class UserForm(forms.ModelForm):
 class ItemUpdateForm(forms.ModelForm):
 
     class Meta:
-        model = Item
-        fields = ('item_name', 'length_feet', 'height_feet', 'cost', 'design')
-
-
-
-class DesignForm(forms.ModelForm):
-
-    class Meta:
         model = Design
-        fields = ('design_name', 'desc', 'cost', 'picture')
+        fields = ('item', 'length_feet', 'height_feet', 'cost', 'design')
+
+
 
 
 

@@ -1,0 +1,37 @@
+{% extends 'welderapp/base.html' %}
+{% block content %}
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <h3 class="text-center text primary">
+            Orders
+
+        </h3>
+    {% if orders %}
+      {% for order in orders %}
+        <div class="col-sm-3">
+        <div class="panel panel-default">
+                <div class="caption">
+                    <h4>Name: {{ order.user }}</h4>
+                    <h5>Date of order : {{ order.date_of_order }}</h5>
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <input type="hidden" name="order_id" value="{{ order.id }}">
+                    <a href="">
+                    <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                    <a href="{%  url 'welderapp:detail' order.id %}" class="btn btn-info btn-sm">Details</a>
+
+                </form>
+                </div>
+        </div>
+        </div>
+
+      {% endfor %}
+    {% endif %}
+</div>
+</div>
+
+{% endblock %}

@@ -4,6 +4,7 @@
 
 <div class="container-fluid">
     <div class="row">
+        <div class="col-sm-4"></div>
         <div class="col-sm-4">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -13,8 +14,6 @@
                 <form method="post" action="" enctype="multipart/form-data">
                     {% csrf_token %}
                     {% include 'weldingapp/form_template.html' %}
-
-
                     <div class="form-group">
                         <button type="submit" class="btn btn-success">Submit</button>
                     </div>
