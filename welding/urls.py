@@ -20,8 +20,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url('', include('weldingapp.urls')),
-    url('welder/', include('welderapp.urls')),
+    url('client/', include('weldingapp.urls')),
+    url('', include('welderapp.urls')),
 
 ]
 
